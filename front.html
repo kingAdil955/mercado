@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado MZ | Login</title>
+  <style>
+    
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* =========================
+   FUNDO DA PÁGINA
+========================= */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #032b1b, #087a45, #0ca65e);
+}
+
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.container {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    color: white;
+}
+
+/* =========================
+   LOGÓTIPO
+========================= */
+.logo {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.logo span {
+    color: #ffd34e;
+}
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+.container p {
+    color: #d8eee2;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   LINK LOGIN
+========================= */
+.container > a {
+    display: inline-block;
+    padding: 14px 55px;
+    background: #ffd34e;
+    color: #063d27;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.container > a:hover {
+    background: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   FORMULÁRIO DE LOGIN
+========================= */
+.login-box {
+    display: none;
+    margin-top: 30px;
+    padding: 28px;
+    background: white;
+    color: #173b29;
+    border-radius: 15px;
+    text-align: left;
+    animation: aparecer 0.4s ease;
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 22px;
+}
+
+/* =========================
+   ETIQUETAS
+========================= */
+.login-box label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* =========================
+   CAMPOS DE ENTRADA
+========================= */
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d5ded8;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    border-color: #087a45;
+    box-shadow: 0 0 0 3px rgba(8, 122, 69, 0.12);
+}
+
+/* =========================
+   BOTÃO ENTRAR
+========================= */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: #087a45;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #055c34;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+.footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #c9e1d2;
+}
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .logo {
+        font-size: 29px;
+    }
+
+    .login-box {
+        padding: 20px;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      MERCADO <span>MZ</span>
+    </div>
+
+    <p>O teu mercado digital em Moçambique.</p>
+
+   <a href="index.html">Login</a>
+
+    <div class="login-box" id="loginBox">
+      <h2>Entrar na conta</h2>
+
+      <form onsubmit="fazerLogin(event)">
+
+        <label>Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Introduza o seu email"
+          required
+        >
+
+        <label>Palavra-passe</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Introduza a palavra-passe"
+          required
+        >
+
+        <button class="submit-btn" type="submit">
+          Entrar
+        </button>
+
+      </form>
+    </div>
+
+    <div class="footer">
+        <div>Site desenvolvido por Adilson Bambo</div>
+      © 2026 Mercado MZ. Todos os direitos reservados.
+
+    </div>
+
+  </div>
+
+  <script>
+    function abrirLogin() {
+      const caixa = document.getElementById("loginBox");
+
+      caixa.style.display =
+        caixa.style.display === "block" ? "none" : "block";
+    }
+
+    function fazerLogin(event) {
+      event.preventDefault();
+
+      alert("Formulário preparado! Liga-o ao sistema de autenticação para validar a conta.");
+    }
+  </script>
+
+</body>
+</html>
