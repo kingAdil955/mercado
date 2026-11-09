@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        input{
+            border: none;
+        }
+        form{
+            width: 300px;
+        }
+        a, input{
+            padding: 10px;
+            margin-bottom: 10px;
+            width: -webkit-fill-available;
+        }
+       a {
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+a:active {
+    opacity: 0.8;
+}
+
+.clear {
+    background-color: white;
+    border: 1px solid white;
+    color: green;
+}
+
+.limpo {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+    </style>
+</head>
+<body>
+    <form action="">
+        <div>
+            <div><label for="">Email</label></div>
+            <input type="email" name="email" id="email"  placeholder="Coloca o Email" required>
+        </div>
+        <div>
+            <div><label for="">Senha</label></div>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+           <a href="plat.html" class="clear">Entrar</a>
+        </div>
+        <div>
+            <a href="plat.html" class="limpo">registar</a>
+        </div>
+    </form>
+</body>
+
+
+</html>

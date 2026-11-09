@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mercado MZ — encontre produtos e contacte vendedores em Moçambique.">
+  <title>Mercado MZ | Compra e venda em Moçambique</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Mercado MZ início"><span class="brand-mark">MZ</span><span>Mercado <b>MZ</b></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav id="mainNav">
+      <a href="#inicio">Início</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#anuncios">Anúncios</a>\n      <a href="#adicionar-produto">Adicionar produto</a>
+      <a href="#planos">Planos</a>
+    </nav>
+    <button class="button button-primary header-post" id="openPost">+ Publicar anúncio</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <span class="eyebrow">🇲🇿 Compra e venda em Moçambique</span>
+        <h1>Encontre o que procura.<br><span>Venda o que já não usa.</span></h1>
+        <p>Descubra produtos perto de si e fale diretamente com os vendedores pelo WhatsApp.</p>
+        <form class="search-bar" id="searchForm">
+          <label class="sr-only" for="searchInput">Pesquisar anúncios</label>
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Ex.: Toyota, telefone, ténis..." autocomplete="off">
+          <button class="button button-yellow" type="submit">Pesquisar</button>
+        </form>
+        <div class="hero-notes"><span>✓ Contacto direto</span><span>✓ Preços em MT</span><span>✓ Anúncios locais</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div>
+        <div class="art-card art-card-main"><span class="art-emoji">🛍️</span><b>O teu mercado,</b><b>num só lugar.</b><small>Produtos • Serviços • Oportunidades</small></div>
+        <div class="art-card art-card-small"><span>📍</span><div><b>À tua volta</b><small>Encontra vendedores locais</small></div></div>
+        <div class="art-star">✦</div>
+      </div>
+    </section>
+
+    <section class="section categories-section" id="categorias">
+      <div class="section-heading"><div><span class="eyebrow dark">EXPLORA</span><h2>O que procuras hoje?</h2><p>Escolhe uma categoria para encontrar anúncios.</p></div></div>
+      <div class="category-grid" id="categoryGrid">
+        <button class="category-card active" data-category="Todos"><span>✨</span><b>Todos</b></button>
+        <button class="category-card" data-category="Veículos"><span>🚗</span><b>Veículos</b></button>
+        <button class="category-card" data-category="Eletrónicos"><span>📱</span><b>Eletrónicos</b></button>
+        <button class="category-card" data-category="Moda"><span>👟</span><b>Moda</b></button>
+        <button class="category-card" data-category="Casa"><span>🛋️</span><b>Casa</b></button>
+        <button class="category-card" data-category="Agricultura"><span>🌱</span><b>Agricultura</b></button>
+        <button class="category-card" data-category="Serviços"><span>🧰</span><b>Serviços</b></button>
+        <button class="category-card" data-category="Outros"><span>📦</span><b>Outros</b></button>
+      </div>
+    </section>
+
+    <section class="section listings-section" id="anuncios">
+      <div class="listings-top">
+        <div><span class="eyebrow dark">OPORTUNIDADES</span><h2>Anúncios em destaque</h2><p>Exemplos de anúncios para demonstração.</p></div>
+        <button class="button button-outline" id="clearFilters">Limpar filtros</button>
+      </div>
+      <div class="filters">
+        <label>Localização
+          <select id="locationFilter">
+            <option value="">Todas as cidades</option>
+            <option>Maputo</option><option>Matola</option><option>Beira</option><option>Nampula</option><option>Quelimane</option><option>Tete</option><option>Pemba</option><option>Chimoio</option>
+          </select>
+        </label>
+        <label>Ordenar por
+          <select id="sortFilter">
+            <option value="featured">Destaque primeiro</option>
+            <option value="low">Menor preço</option>
+            <option value="high">Maior preço</option>
+            <option value="new">Mais recentes</option>
+          </select>
+        </label>
+      </div>
+      <div class="results-line"><span id="resultsCount">0 anúncios</span><span>Contacta o vendedor antes de combinar a compra.</span></div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><span>🔎</span><h3>Nenhum anúncio encontrado</h3><p>Tenta outra pesquisa ou limpa os filtros.</p></div>
+    </section>
+
+    <section class="section add-product-section" id="adicionar-produto">
+      <div class="add-product-intro">
+        <span class="eyebrow dark">PUBLICA O TEU ANÚNCIO</span>
+        <h2>Adicionar produto</h2>
+        <p>Preenche os dados do produto e publica o anúncio no Mercado MZ.</p>
+      </div>
+      <form id="quickProductForm" class="quick-product-form">
+        <div class="quick-form-grid">
+          <label>Nome do produto
+            <input name="title" required maxlength="70" placeholder="Ex.: Samsung Galaxy A14">
+          </label>
+          <label>Categoria
+            <select name="category" required>
+              <option value="">Escolher categoria</option>
+              <option>Veículos</option><option>Eletrónicos</option><option>Moda</option>
+              <option>Casa</option><option>Agricultura</option><option>Serviços</option><option>Outros</option>
+            </select>
+          </label>
+          <label>Preço (MT)
+            <input name="price" type="number" min="0" required placeholder="Ex.: 2500">
+          </label>
+          <label>Cidade
+            <input name="location" required placeholder="Ex.: Maputo">
+          </label>
+          <label>Estado
+            <select name="condition"><option>Novo</option><option>Usado</option><option>Não aplicável</option></select>
+          </label>
+          <label>WhatsApp do vendedor
+            <input name="phone" type="tel" required placeholder="Ex.: 25884XXXXXXX">
+          </label>
+          <label class="image-upload-label">Fotografia do produto (opcional)
+            <input id="quickProductImage" name="image" type="file" accept="image/*">
+            <small>Escolhe uma imagem do teu dispositivo. A imagem fica guardada apenas neste navegador.</small>
+          </label>
+          <div id="quickImagePreview" class="quick-image-preview"><span>🖼️</span><small>A pré-visualização da imagem aparecerá aqui.</small></div>
+          <label class="description-field">Descrição
+            <textarea name="description" rows="3" required maxlength="500" placeholder="Descreve o produto, o estado e outros detalhes..."></textarea>
+          </label>
+        </div>
+        <label class="quick-featured"><input type="checkbox" name="featured"> Quero destacar este anúncio (300 MT / 7 dias, preço ilustrativo)</label>
+        <div class="quick-form-footer"><p>Protótipo: anúncio guardado neste navegador, sem pagamento real.</p><button class="button button-primary" type="submit">Publicar produto</button></div>
+      </form>
+    </section>
+
+    <section class="seller-banner">
+      <div><span class="eyebrow">TENS ALGO PARA VENDER?</span><h2>O teu próximo cliente pode estar aqui.</h2><p>Publica um anúncio e deixa que os compradores te encontrem.</p></div>
+      <button class="button button-yellow" id="bannerPost">+ Publicar gratuitamente</button>
+    </section>
+
+    <section class="section plans-section" id="planos">
+      <div class="section-heading centered"><span class="eyebrow dark">CRESCE COM O MERCADO MZ</span><h2>Planos para vendedores</h2><p>Começa grátis e paga apenas se quiseres mais visibilidade.</p></div>
+      <div class="plans-grid">
+        <article class="plan-card">
+          <span class="plan-label">PARA COMEÇAR</span><h3>Gratuito</h3><div class="plan-price">0 MT <small>/ sempre</small></div>
+          <p>Ideal para experimentar a plataforma.</p><ul><li>Até 3 anúncios ativos</li><li>Contacto direto pelo WhatsApp</li><li>Gestão básica dos anúncios</li></ul>
+          <button class="button button-outline plan-select" data-plan="Gratuito">Começar grátis</button>
+        </article>
+        <article class="plan-card featured-plan">
+          <span class="popular-tag">MAIS VISIBILIDADE</span><span class="plan-label">PARA VENDEDORES ATIVOS</span><h3>Destaque</h3><div class="plan-price">300 MT <small>/ 7 dias*</small></div>
+          <p>Dá mais visibilidade a um anúncio.</p><ul><li>1 anúncio em destaque</li><li>Etiqueta “Destaque”</li><li>Prioridade na listagem</li></ul>
+          <button class="button button-primary plan-select" data-plan="Destaque">Escolher destaque</button>
+        </article>
+        <article class="plan-card">
+          <span class="plan-label">PARA NEGÓCIOS</span><h3>Profissional</h3><div class="plan-price">1.500 MT <small>/ mês*</small></div>
+          <p>Para lojas e vendedores profissionais.</p><ul><li>Até 30 anúncios ativos</li><li>Perfil comercial</li><li>Mais espaço para os produtos</li></ul>
+          <button class="button button-outline plan-select" data-plan="Profissional">Tenho interesse</button>
+        </article>
+      </div>
+      <p class="plan-disclaimer">*Preços ilustrativos para o protótipo. Os planos não processam pagamentos automaticamente.</p>
+      <div class="payment-box" id="recebimentos">
+        <div><span class="eyebrow dark">PAGAMENTOS</span><h3>Dados para recebimento</h3><p>Quando for necessário pagar por um plano, confirma primeiro os detalhes do pagamento.</p></div>
+        <div class="payment-number"><span>Número de recebimento</span><strong>843 480 824</strong><button type="button" class="button button-outline" id="copyPaymentNumber">Copiar número</button></div>
+        <p class="form-note tiny">Nota: este protótipo ainda não confirma nem processa pagamentos automaticamente. Não faças uma transferência sem confirmar o método e os dados com o responsável.</p>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div><span>🤝</span><div><b>Negocia diretamente</b><small>Combina preço e entrega com o vendedor.</small></div></div>
+      <div><span>🔎</span><div><b>Confirma antes de pagar</b><small>Verifica o produto e a identidade do vendedor.</small></div></div>
+      <div><span>📍</span><div><b>Compra localmente</b><small>Pesquisa anúncios por cidade.</small></div></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand brand-footer" href="#"><span class="brand-mark">MZ</span><span>Mercado <b>MZ</b></span></a>
+    <p>Uma plataforma de anúncios para aproximar vendedores e compradores em Moçambique.</p>
+    <small>© <span id="year"></span> Mercado MZ. Protótipo demonstrativo.</small>
+  </footer>
+
+  <dialog id="postDialog" class="modal">
+    <form id="postForm" class="modal-form">
+      <div class="modal-heading"><div><span class="eyebrow dark">NOVO ANÚNCIO</span><h2>Publicar produto</h2></div><button type="button" class="close-modal" data-close="postDialog" aria-label="Fechar">×</button></div>
+      <p class="form-note">Preenche os dados abaixo. Não publiques informações pessoais desnecessárias.</p>
+      <label>Nome do produto ou serviço<input name="title" required maxlength="70" placeholder="Ex.: Toyota Corolla 2008"></label>
+      <div class="form-row"><label>Categoria<select name="category" required><option value="">Escolher</option><option>Veículos</option><option>Eletrónicos</option><option>Moda</option><option>Casa</option><option>Agricultura</option><option>Serviços</option><option>Outros</option></select></label>
+      <label>Preço (MT)<input name="price" type="number" min="0" required placeholder="Ex.: 450000"></label></div>
+      <div class="form-row"><label>Cidade<input name="location" required placeholder="Ex.: Maputo"></label>
+      <label>Estado<select name="condition"><option>Novo</option><option>Usado</option><option>Não aplicável</option></select></label></div>
+      <label>Descrição<textarea name="description" rows="3" required maxlength="500" placeholder="Descreve o produto, o estado e outros detalhes..."></textarea></label>
+      <label>Número de WhatsApp com indicativo do país<input name="phone" type="tel" required placeholder="Ex.: 25884XXXXXXX"></label>
+      <label class="checkbox-label"><input type="checkbox" name="featured"> Quero marcar este anúncio como destaque (300 MT / 7 dias, preço ilustrativo)</label>
+      <div class="modal-actions"><button type="button" class="button button-outline" data-close="postDialog">Cancelar</button><button class="button button-primary" type="submit">Publicar anúncio</button></div>
+      <p class="form-note tiny">Protótipo: os dados são guardados apenas neste navegador. O destaque é demonstrativo e não cobra dinheiro.</p>
+    </form>
+  </dialog>
+
+  <dialog id="planDialog" class="modal">
+    <div class="modal-form"><div class="modal-heading"><div><span class="eyebrow dark">PLANOS</span><h2 id="planDialogTitle">Plano selecionado</h2></div><button type="button" class="close-modal" data-close="planDialog" aria-label="Fechar">×</button></div>
+      <p id="planDialogText"></p><p class="form-note">Esta demonstração não recebe pagamentos. Para vender planos reais, será necessário integrar um fornecedor de pagamentos, confirmar as transações e publicar termos claros.</p><button class="button button-primary full-width" data-close="planDialog">Entendi</button>
+    </div>
+  </dialog>
+
+
+  <dialog id="paymentDialog" class="modal">
+    <div class="modal-form payment-modal-form">
+      <div class="modal-heading">
+        <div><span class="eyebrow dark">PAGAMENTO DO PLANO</span><h2 id="paymentTitle">Finalizar compra</h2></div>
+        <button type="button" class="close-modal" data-close="paymentDialog" aria-label="Fechar">×</button>
+      </div>
+      <p id="paymentSummary" class="payment-summary">Escolhe a carteira móvel para continuar.</p>
+      <label for="paymentNetwork">Rede de pagamento</label>
+      <select id="paymentNetwork" required>
+        <option value="mpesa">M-Pesa (Vodacom)</option>
+        <option value="emola">e-Mola (Movitel)</option>
+        <option value="mkesh">mKesh (Tmcel)</option>
+      </select>
+      <div class="ussd-instructions" id="ussdInstructions" aria-live="polite">
+        <b>Código USSD:</b> <span id="ussdCode">*111#</span>
+        <p id="ussdSteps">Abre o menu da carteira e segue as opções de transferência.</p>
+      </div>
+      <div class="payment-recipient">
+        <span>Número de recebimento</span><strong>843 480 824</strong>
+      </div>
+      <button type="button" class="button button-primary full-width" id="openUssd">Abrir menu da rede no telemóvel</button>
+      <p class="form-note tiny">Se o menu não abrir, marca o código acima manualmente no telemóvel com a rede escolhida. O site não pede nem guarda o teu PIN.</p>
+      <form id="paymentReferenceForm">
+        <label for="paymentReference">Referência / código da transação (opcional)</label>
+        <input id="paymentReference" name="reference" maxlength="80" placeholder="Introduz a referência do recibo, se tiveres">
+        <label for="paymentPayerPhone">Número usado para pagar (opcional)</label>
+        <input id="paymentPayerPhone" name="payerPhone" type="tel" maxlength="20" placeholder="Ex.: 84XXXXXXX">
+        <button type="submit" class="button button-outline full-width">Enviar para verificação</button>
+      </form>
+      <p class="form-note tiny" id="paymentStatusNote">O envio apenas regista um pedido neste navegador. Não confirma o pagamento nem ativa o plano automaticamente.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
